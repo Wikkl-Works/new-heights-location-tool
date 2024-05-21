@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1009295391, guid: b981ac5fea65cbf46ab728daad9c9206, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c42ff11a1a144c4590bd0a71ca218d4, type: 3}
   m_Name: ModToolSettings
   m_EditorClassIdentifier: 
   _productName: New Heights

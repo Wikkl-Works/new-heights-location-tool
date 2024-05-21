@@ -23,11 +23,11 @@ public class WorkshopExporterWindow : EditorWindow
     private string openLegalUrl;
     private bool HasError => !string.IsNullOrWhiteSpace(error);
 
-    [MenuItem("New Heights/Steam Workshop Wizard")]
+    [MenuItem("Steam Workshop Wizard/Steam Workshop Wizard")]
     public static void ShowWindow()
     {
         var window = GetWindow<WorkshopExporterWindow>();
-        window.titleContent = new GUIContent("Steam Workshop");
+        window.titleContent = new GUIContent("Steam Workshop Wizard");
     }
 
     private GUIStyle GetBoldTextFieldStyle()

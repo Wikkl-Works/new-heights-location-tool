@@ -10,7 +10,7 @@ You can now create your own locations for New Heights and upload them to the ste
 
 ## Step 1 - Download the tools
 
-[Download](https://newheightsgame.com/downloads/new-heights-location-tool.zip) (~676mb) or [clone](https://github.com/Wikkl-Works/new-heights-location-tool) the New heights workshop tool and open it in [Unity 2022.3.10f](unityhub://2022.3.10f1/ff3792e53c62).
+[Download](https://newheightsgame.com/downloads/new-heights-location-tool.zip) (~124mb) or [clone](https://github.com/Wikkl-Works/new-heights-location-tool) the New heights workshop tool and open it in [Unity 2022.3.10f](unityhub://2022.3.10f1/ff3792e53c62).
 
 If you don’t have Unity yet, download the [Unity Hub](https://unity.com/download) and install Unity 2022.3.10f1 from the [archive](https://unity.com/releases/editor/archive) (In the installer, you don’t need to install Visual Studio, if you’re not planning to code)
 
@@ -95,3 +95,7 @@ That’s it! You now know how to create your own location and add it to New Heig
 ## Step 7 - Share & Improve
 
 Do you want to tell people in the community about what you made? Or do you want to know more details? Come join the [Discord Server](https://discord.gg/2DqPft9tnk)!
+
+## Acknowledgments
+
+This tool relies heavily on the awesome [ModTool](https://github.com/Hello-Meow/ModTool) written by [Hello-Meow](https://github.com/Hello-Meow)!
