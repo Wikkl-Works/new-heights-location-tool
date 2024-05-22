@@ -57,7 +57,7 @@ There are a couple of requirements for your scene in order to make it work in Ne
 Once you’re happy with your scene it’s time to export it to the Steam Workshop! Start by opening the Steam Workshop wizard by navigating to **New Heights > Steam Workshop Wizard**.
 
 1. Make sure steam is running before continuing, otherwise the wizard won’t work!
-2. Make sure that your **active scene** is the **only scene in the project**. Unfortunately for now, the tool exports all scenes in your project. We would like to change this to exporting the active scene only later.
+2. Make sure that your **active scene** (the currently opened scene in your editor) is the scene you wan to export. The tool will **only** export this scene and its dependencies.
 
 3. If this is your first Steam Workshop item ever created, congratulations! But before you can upload the location, you’ll first have to accept the [Steam Workshop Agreement](https://steamcommunity.com/workshop/workshoplegalagreement/).
 4. If this is a new location, click the **Create Item** button to create a new workshop entry.
