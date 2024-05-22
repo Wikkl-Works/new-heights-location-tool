@@ -9,18 +9,41 @@ public class WorkshopExporterWindow : EditorWindow
 {
     private const uint APP_ID = 2179440;
 
-    private string workshopItemId;
-    private string imagePath, changeNotes;
+
+    private static string imagePath;
+    private static string changeNotes;
     private bool pending;
     private bool exported;
     private bool uploaded;
 
     private string error;
 
-    private bool isExistingItem;
+    private static bool isExistingItem;
 
     private bool openLegal;
     private string openLegalUrl;
+
+    private string WorkshopItemId
+    {
+        get
+        {
+            return workshopItemId;
+        }
+        set
+        {
+            bool changed = workshopItemId == value;
+            workshopItemId = value;
+
+            if (changed)
+            {
+                exported = false;
+                uploaded = false;
+                changeNotes = "";
+                imagePath = "";
+            }
+        }
+    }
+    private static string workshopItemId;
     private bool HasError => !string.IsNullOrWhiteSpace(error);
 
     [MenuItem("Steam Workshop Wizard/Steam Workshop Wizard")]
@@ -123,7 +146,7 @@ public class WorkshopExporterWindow : EditorWindow
         if (isExistingItem)
         {
             EditorGUILayout.LabelField("", EditorStyles.boldLabel);
-            workshopItemId = EditorGUILayout.TextField("Existing Item ID", workshopItemId, GetBoldTextFieldStyle());
+            WorkshopItemId = EditorGUILayout.TextField("Existing Item ID", WorkshopItemId, GetBoldTextFieldStyle());
             EditorGUILayout.LabelField("Here you can fill in an existing Steam Workshop Item ID to edit your existing item. Did you create the item here? Then you could find the ID in the export log.", GetItalicStyle());
 
             if (GUILayout.Button($"Open export log"))
@@ -141,12 +164,11 @@ public class WorkshopExporterWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-
         // Workshop Item Link
-        if (!string.IsNullOrEmpty(workshopItemId))
+        if (isExistingItem && !string.IsNullOrEmpty(WorkshopItemId))
         {
             EditorGUILayout.LabelField("Your item:", EditorStyles.boldLabel);
-            var url = workshopItemId.GetWorkshopUrl();
+            var url = WorkshopItemId.GetWorkshopUrl();
             GUIStyle style = new() { richText = true, fontStyle = FontStyle.Bold };
             EditorGUILayout.TextField($"<a href=\"{url}\">{url}</a>", style);
             if (GUILayout.Button($"Open URL", GUILayout.ExpandWidth(false)))
@@ -170,17 +192,18 @@ public class WorkshopExporterWindow : EditorWindow
 
         // Workshop create/upload button
 
-        if (string.IsNullOrEmpty(workshopItemId))
+        if (!isExistingItem || string.IsNullOrEmpty(WorkshopItemId))
             GUI.enabled = false;
 
         if (GUILayout.Button($"Export Item To Game Folder", GUILayout.Height(30)))
         {
-            if (uint.TryParse(workshopItemId, out var itemId))
+            if (uint.TryParse(WorkshopItemId, out var itemId))
                 ExportMod((PublishedFileId_t)itemId);
         }
         if (exported)
             EditorGUILayout.LabelField("Export complete!", EditorStyles.boldLabel);
-        EditorGUILayout.LabelField($"Your export can be played in New Heights under the name of item_{workshopItemId}. (When you or others subscribe to the workshop asset, they will see the name you entered in at the Workshop page instead and they will also see the uploaded image.)", GetItalicStyle());
+        if (isExistingItem)
+            EditorGUILayout.LabelField($"Your export can be played in New Heights under the name of item_{WorkshopItemId}. (When you or others subscribe to the workshop asset, they will see the name you entered in at the Workshop page instead and they will also see the uploaded image.)", GetItalicStyle());
         EditorGUILayout.Space();
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space();
@@ -191,7 +214,7 @@ public class WorkshopExporterWindow : EditorWindow
         EditorGUILayout.LabelField("3. Upload to Workshop", EditorStyles.largeLabel);
         EditorGUILayout.Space();
 
-        if (string.IsNullOrEmpty(workshopItemId) || !Directory.Exists(workshopItemId.GetContentPath()))
+        if (!isExistingItem || string.IsNullOrEmpty(WorkshopItemId) || !Directory.Exists(WorkshopItemId.GetContentPath()))
             GUI.enabled = false;
 
         // Image directory
@@ -220,8 +243,8 @@ public class WorkshopExporterWindow : EditorWindow
 
         if (GUILayout.Button($"Upload Item To Workshop", GUILayout.Height(30)))
         {
-            if (uint.TryParse(workshopItemId, out var itemId))
-                UpdateMod((PublishedFileId_t)itemId, workshopItemId.GetContentPath(), imagePath, changeNotes);
+            if (uint.TryParse(WorkshopItemId, out var itemId))
+                UpdateMod((PublishedFileId_t)itemId, WorkshopItemId.GetContentPath(), imagePath, changeNotes);
         }
 
         if (pending)
@@ -250,7 +273,7 @@ public class WorkshopExporterWindow : EditorWindow
         Color originalColor = GUI.backgroundColor;
         GUI.backgroundColor = Color.red;
         GUI.color = Color.yellow;
-        GUILayout.Button($"Startup Steam first..", GUILayout.Height(30));
+        GUILayout.Button($"Startup Steam first", GUILayout.Height(30));
         GUI.backgroundColor = originalBackgroundColor;
         GUI.color = originalColor;
         GUI.enabled = true;
@@ -267,7 +290,7 @@ public class WorkshopExporterWindow : EditorWindow
 
             if (result.m_eResult == EResult.k_EResultOK)
             {
-                workshopItemId = result.m_nPublishedFileId.ToString();
+                WorkshopItemId = result.m_nPublishedFileId.ToString();
                 isExistingItem = true;
             }
             else
