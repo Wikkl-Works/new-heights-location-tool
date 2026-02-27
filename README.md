@@ -2,17 +2,15 @@
 
 ### !Warning! The project doesn't work when you download this repository as zip, because Github will omit dll files. Please clone the project, or use the [Download Link](https://newheightsgame.com/downloads/new-heights-location-tool.zip).
 
-### Note: Steam Workshop features are only available in the Beta version New Heights! The update will be available in the normal version of the game at the end of June 2024.
-
 You can now create your own locations for New Heights and upload them to the steam workshop for the world to try! In this guide we will walk you through the steps required to make your own model, upload it to our steam workshop and climb it in New Heights.
 
 **For creating your own locations you will require some knowledge about the game engine Unity.** There’s no need to code, but you will need to do various actions inside the Unity Editor. We will create an instruction video soon in which we cover most of the basics that you need to create your locations within Unity.
 
 ## Step 1 - Download the tools
 
-[Download](https://newheightsgame.com/downloads/new-heights-location-tool.zip) (~124mb) or [clone](https://github.com/Wikkl-Works/new-heights-location-tool) the New heights workshop tool and open it in [Unity 2022.3.10f](unityhub://2022.3.10f1/ff3792e53c62).
+[Download](https://newheightsgame.com/downloads/new-heights-location-tool.zip) (~124mb) or [clone](https://github.com/Wikkl-Works/new-heights-location-tool) the New heights workshop tool and open it in [Unity 2022.3.62f3](unityhub://2022.3.62f3/96770f904ca7).
 
-If you don’t have Unity yet, download the [Unity Hub](https://unity.com/download) and install Unity 2022.3.10f1 from the [archive](https://unity.com/releases/editor/archive) (In the installer, you don’t need to install Visual Studio, if you’re not planning to code)
+If you don’t have Unity yet, download the [Unity Hub](https://unity.com/download) and install Unity 2022.3.62f3 from the [archive](https://unity.com/releases/editor/archive) (In the installer, you don’t need to install Visual Studio, if you’re not planning to code)
 
 ## Step 2 - Make a location
 
